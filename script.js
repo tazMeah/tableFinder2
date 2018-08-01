@@ -17,7 +17,7 @@ $(document).ready(function(){
 
     })
 
-
+  
 
 
 
@@ -49,16 +49,31 @@ $(document).ready(function(){
 
 
 
-    $("#table").on("mouseenter", ".reserved", (e)=>{
-        $("article").fadeIn();
-        tableNumber = $(e.target).index();
-        $("article div").text(tableNumber + 1); // table with number inside
-        $("article h2 span").text(reservations[tableNumber][0]); // name of reserver
-        $("article p").text(`Party of ${reservations[tableNumber][2]}`) // party size
-    })
+    // $("#table").on("mouseenter", ".reserved", (e)=>{
+    //     $("article").fadeIn();
+    //     tableNumber = $(e.target).index();
+    //     $("article div").text(tableNumber + 1); // table with number inside
+    //     $("article h2 span").text(reservations[tableNumber][0]); // name of reserver
+    //     $("article p").text(`Party of ${reservations[tableNumber][2]}`) // party size
+    // })
 
-    $("body").on("mouseleave", "#table", (e)=>{
-        $("article").fadeOut();
+    // $("body").on("mouseleave", "#table", (e)=>{
+    //     $("article").fadeOut();
         
+    // })
+
+    let appear;
+    $("#table").on("mouseenter", "div.reserved", function(e){
+        appear = setTimeout(function(){
+            $("article").fadeIn();
+            tableNumber = $(e.target).index();
+            $("article div").text(tableNumber + 1); // table with number inside
+            $("article h2 span").text(reservations[tableNumber][0]); // name of reserver
+            $("article p").text(`Party of ${reservations[tableNumber][2]}`) // party size
+            }, 1000)
+    })
+    .on("mouseleave", "div.reserved", function(e){
+        clearTimeout(appear);
+        $("article").fadeOut();
     })
 })
