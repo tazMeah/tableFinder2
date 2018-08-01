@@ -7,7 +7,7 @@ let reservations = [];
 
 
 $("body").on("click", "div.available", (e)=> {
-    $("#bottom").toggle();
+    $("#bottom").fadeIn();
     tableNumber = $(e.target).index();
 
     // show table number in the form
@@ -46,23 +46,42 @@ $("#cancel").click(function(){
 
 })
 
-// when you hover over a reserved table. show its contents
+// // when you hover over a reserved table. show its contents
 
-$("body").on("mouseenter", "div.reserved", (e)=> {
-    // copied from on click
-        $("#bottom").slideUp( 300 ).delay( 800 ).fadeIn( 400 );
-        tableNumber = $(e.target).index();
+// $("body").on("mouseenter", "div.reserved", (e)=> {
+//     // copied from on click
+//         $("#bottom").slideUp( 300 ).delay( 800 ).fadeIn( 400 );
+//         tableNumber = $(e.target).index();
 
 
-        // show table number in the form
-        $("#tableNumber span").text(tableNumber+1);
 
-        // show reserved contents
-        $("#name").val("Name: " + reservations[tableNumber][0]); 
-        $("#phone").val("Phone: " + reservations[tableNumber][1]);
-        $("#party").val("Party of: " + reservations[tableNumber][2]);
+//         // show table number in the form
+//         $("#tableNumber span").text(tableNumber+1);
+
+//         // show reserved contents
+//         $("#name").val("Name: " + reservations[tableNumber][0]); 
+//         $("#phone").val("Phone: " + reservations[tableNumber][1]);
+//         $("#party").val("Party of: " + reservations[tableNumber][2]);
+
+//         // hide the x, and the save buttons
+       
 
     
     
 
+// })
+
+$("#table").on("mouseenter", ".reserved", (e)=>{
+    $("article").fadeIn();
+    tableNumber = $(e.target).index();
+    $("article div").text(tableNumber + 1); // table with number inside
+    $("article h2 span").text(reservations[tableNumber][0]); // name of reserver
+    $("article p").text(`Party of ${reservations[tableNumber][2]}`) // party size
+})
+
+$("body").on("mouseleave", "#table", (e)=>{
+    $("article").hide();
+    $("article div").text(tableNumber + 1);
+    $("article h2 span").text(reservations[tableNumber][0]);
+    $("article p").text(reservations[tableNumber][2])
 })
