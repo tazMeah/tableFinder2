@@ -41,6 +41,7 @@ $("#save").click(function(){
 
 $("#cancel").click(function(){
     $("#bottom").toggle();
+    $("form input").val("");
 
 
 })
@@ -49,7 +50,7 @@ $("#cancel").click(function(){
 
 $("body").on("mouseenter", "div.reserved", (e)=> {
     // copied from on click
-        $("#bottom").toggle();
+        $("#bottom").slideUp( 300 ).delay( 800 ).fadeIn( 400 );
         tableNumber = $(e.target).index();
 
 
@@ -57,20 +58,11 @@ $("body").on("mouseenter", "div.reserved", (e)=> {
         $("#tableNumber span").text(tableNumber+1);
 
         // show reserved contents
-        $("#name").val(reservations[tableNumber][0]); 
-        $("#phone").val(reservations[tableNumber][1]);
-        $("#party").val(reservations[tableNumber][2]);
+        $("#name").val("Name: " + reservations[tableNumber][0]); 
+        $("#phone").val("Phone: " + reservations[tableNumber][1]);
+        $("#party").val("Party of: " + reservations[tableNumber][2]);
 
     
     
-
-}).on("mouseleave", "form", (e)=> {
-    // copied from on save
-        // clear form contents
-        $("form input").val("");
-
-        $("#bottom").hide();
 
 })
-
-
