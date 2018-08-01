@@ -57,6 +57,6 @@ $("#table").on("mouseenter", ".reserved", (e)=>{
 })
 
 $("body").on("mouseleave", "#table", (e)=>{
-    $("article").hide();
+    $("article").fadeOut();
     
 })
